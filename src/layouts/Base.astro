@@ -10,9 +10,10 @@ interface Props {
   image?: string;
   type?: 'website' | 'article';
   jsonLd?: Record<string, unknown>;
+  header?: boolean;
 }
 
-const { title, description, image = '/og.png', type = 'website', jsonLd } = Astro.props;
+const { title, description, image = '/og.png', type = 'website', jsonLd, header = true } = Astro.props;
 const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site);
 const ogImage = new URL(image, Astro.site);
 ---
@@ -57,10 +58,10 @@ const ogImage = new URL(image, Astro.site);
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    <Header />
+    {header && <Header />}
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    {header && <Footer />}
   </body>
 </html>

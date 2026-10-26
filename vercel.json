@@ -8,5 +8,12 @@
       "destination": "https://portfolio-souradip.vercel.app/:path*",
       "permanent": true
     }
+  ],
+  "rewrites": [{ "source": "/api/v1/engineers/souradip", "destination": "/api/v1/engineers/souradip.json" }],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
+    }
   ]
 }

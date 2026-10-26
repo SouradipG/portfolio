@@ -25,7 +25,7 @@ export const projects: Project[] = [
     tagline: 'A GraphQL service that runs retirement math on the JVM and asks an LLM to explain the result.',
     year: '2026',
     repo: 'https://github.com/SouradipG/fire-calculator',
-    stack: ['Java 21', 'Spring Boot 3.3', 'Spring for GraphQL', 'RestClient', 'Groq (Llama 3.3 70B)'],
+    stack: ['Java 21', 'Spring Boot', 'Spring for GraphQL', 'RestClient', 'Groq (Llama 3.3 70B)'],
     problem:
       'Most FIRE (financial independence, retire early) calculators give you one number and stop there. I wanted an API that returns the full picture, a year by year projection, the shortfall and the SIP needed to close it, plus plain language advice that reacts to the person’s own goals and risk profile.',
     design: [
@@ -69,7 +69,7 @@ export const projects: Project[] = [
     tagline: 'Non blocking microservices that stream live stock prices and execute trades end to end.',
     year: '2025',
     repo: 'https://github.com/SouradipG/trade-platofrm',
-    stack: ['Java 17', 'Spring WebFlux', 'Project Reactor', 'R2DBC', 'Server Sent Events', 'WebClient'],
+    stack: ['Java', 'Spring WebFlux', 'Project Reactor', 'R2DBC', 'Server Sent Events', 'WebClient'],
     problem:
       'A trading flow has to read a live price, validate the order and update a portfolio while thousands of clients hold open price streams. A thread per request model runs out of threads long before it runs out of CPU, so I built the whole path to be non blocking.',
     design: [
@@ -111,7 +111,7 @@ export const projects: Project[] = [
     tagline: 'Upload a resume and get extracted skills, a role guess, a sentiment read and a score back over REST.',
     year: '2025',
     repo: 'https://github.com/SouradipG/ai-resume-analyzer',
-    stack: ['Java 17', 'Spring Boot 3.2', 'Apache Tika', 'Hugging Face Inference API', 'Spring Data JPA'],
+    stack: ['Java', 'Spring Boot', 'Apache Tika', 'Hugging Face Inference API', 'Spring Data JPA'],
     problem:
       'Screening resumes by hand is slow and inconsistent. I wanted a service that turns any PDF or Word resume into structured data a recruiter or another system can filter, rank and chart.',
     design: [
@@ -152,7 +152,7 @@ export const projects: Project[] = [
     tagline: 'A role based hiring platform for recruiters and job seekers, secured with Spring Security.',
     year: '2025',
     repo: 'https://github.com/SouradipG/job-portal',
-    stack: ['Java 17', 'Spring Boot 3', 'Spring Security', 'Hibernate / JPA', 'Thymeleaf', 'MySQL'],
+    stack: ['Java', 'Spring Boot', 'Spring Security', 'Hibernate / JPA', 'Thymeleaf', 'MySQL'],
     problem:
       'Two kinds of users, recruiters and job seekers, share one application but must never see each other’s tools. The interesting part was modelling that cleanly in both the data layer and the security layer.',
     design: [
