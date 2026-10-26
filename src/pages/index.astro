@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { profile, metrics, experience, skills, certifications, awards, education } from '../data/profile';
+import { profile, metrics, experience, skills, certifications, awards, education, earlyWork } from '../data/profile';
 import { projects } from '../data/projects';
 
 const site = Astro.site!.toString().replace(/\/$/, '');
@@ -149,6 +149,14 @@ const response = `<span class="c">HTTP/1.1 200 OK</span>\n<span class="c">conten
             </div>
           </article>
         ))}
+      </div>
+      <div class="early">
+        <p class="eyebrow">Where it started</p>
+        <div>
+          <h3><a href={earlyWork.repo}>{earlyWork.name}</a></h3>
+          <p>{earlyWork.summary}</p>
+          <ul class="tags">{earlyWork.stack.map((s) => <li>{s}</li>)}</ul>
+        </div>
       </div>
     </div>
   </section>
@@ -413,6 +421,22 @@ const response = `<span class="c">HTTP/1.1 200 OK</span>\n<span class="c">conten
     font-weight: 500;
   }
 
+  .early {
+    display: grid;
+    grid-template-columns: 12rem minmax(0, 1fr);
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px dashed var(--line);
+  }
+  .early h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
+  }
+  .early p:not(.eyebrow) {
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
   .skills {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -482,8 +506,12 @@ const response = `<span class="c">HTTP/1.1 200 OK</span>\n<span class="c">conten
       grid-template-columns: 1fr;
       gap: 0.5rem;
     }
-    .projects {
+    .projects,
+    .early {
       grid-template-columns: 1fr;
+    }
+    .early {
+      gap: 0.5rem;
     }
     .skills > div {
       grid-template-columns: 1fr;
