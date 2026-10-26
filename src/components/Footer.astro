@@ -1,0 +1,32 @@
+---
+import { profile } from '../data/profile';
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="wrap row">
+    <p>© {year} {profile.name}</p>
+    <p class="src">
+      Static site built with Astro, served from Vercel’s edge.
+      <a href="https://github.com/SouradipG/portfolio">Source</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 2rem 0 2.5rem;
+    color: var(--faint);
+    font-size: 0.85rem;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+  }
+  p {
+    margin: 0;
+  }
+</style>

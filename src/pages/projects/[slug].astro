@@ -1,0 +1,168 @@
+---
+import Base from '../../layouts/Base.astro';
+import Diagram from '../../components/Diagram.astro';
+import { projects, type Project } from '../../data/projects';
+import { profile } from '../../data/profile';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props as { project: Project };
+const index = projects.findIndex((p) => p.slug === project.slug);
+const nextProject = projects[(index + 1) % projects.length];
+const site = Astro.site!.toString().replace(/\/$/, '');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareSourceCode',
+  name: project.name,
+  description: project.tagline,
+  codeRepository: project.repo,
+  programmingLanguage: 'Java',
+  author: { '@type': 'Person', name: profile.name, url: site },
+};
+---
+
+<Base
+  title={`${project.name}: design notes | ${profile.name}`}
+  description={`${project.tagline} Architecture, design decisions and tradeoffs by ${profile.name}.`}
+  type="article"
+  jsonLd={jsonLd}
+>
+  <article class="wrap doc">
+    <a class="back" href="/#projects">← All projects</a>
+
+    <header>
+      <p class="eyebrow">Design notes · {project.year}</p>
+      <h1>{project.name}</h1>
+      <p class="tagline">{project.tagline}</p>
+      <ul class="tags">{project.stack.map((s) => <li>{s}</li>)}</ul>
+      <div class="actions">
+        <a class="btn primary" href={project.repo}>View the code on GitHub</a>
+      </div>
+    </header>
+
+    <section>
+      <h2><span class="num">1</span>Problem</h2>
+      <p>{project.problem}</p>
+    </section>
+
+    <section>
+      <h2><span class="num">2</span>Architecture</h2>
+      <Diagram layers={project.diagram} links={project.edges} label={`${project.name} architecture`} />
+      <ul class="design">
+        {project.design.map((d) => <li>{d}</li>)}
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="num">3</span>Key decisions</h2>
+      <div class="decisions">
+        {project.decisions.map((d) => (
+          <div class="decision">
+            <h3>{d.title}</h3>
+            <p>{d.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="num">4</span>What I would add next</h2>
+      <ul class="design">
+        {project.next.map((n) => <li>{n}</li>)}
+      </ul>
+    </section>
+
+    <nav class="next" aria-label="Next project">
+      <span class="eyebrow">Next</span>
+      <a href={`/projects/${nextProject.slug}`}>{nextProject.name} →</a>
+    </nav>
+  </article>
+</Base>
+
+<style>
+  .doc {
+    max-width: 48rem;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+  }
+  .back {
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  header {
+    padding: 2rem 0 2.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  h1 {
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    margin: 0.5rem 0 0.75rem;
+  }
+  .tagline {
+    font-size: 1.2rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .actions {
+    margin-top: 1.5rem;
+  }
+  section {
+    padding: 2.25rem 0 0.5rem;
+  }
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+  }
+  .num {
+    display: inline-grid;
+    place-items: center;
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 5px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.85rem;
+  }
+  .design {
+    margin-top: 1.25rem;
+  }
+  .design li {
+    margin-bottom: 0.55rem;
+  }
+  .decisions {
+    display: grid;
+    gap: 1rem;
+  }
+  .decision {
+    padding: 1.1rem 1.25rem;
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    border-radius: 0 8px 8px 0;
+  }
+  .decision h3 {
+    font-size: 1.02rem;
+    margin-bottom: 0.35rem;
+  }
+  .decision p {
+    margin: 0;
+    color: var(--muted);
+  }
+  .next {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .next a {
+    font-weight: 500;
+  }
+</style>

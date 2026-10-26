@@ -1,0 +1,499 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile, metrics, experience, skills, certifications, awards, education } from '../data/profile';
+import { projects } from '../data/projects';
+
+const site = Astro.site!.toString().replace(/\/$/, '');
+const title = `${profile.name} | Backend Engineer, Java and Spring Boot`;
+const description =
+  'Souradip Ganguly is a backend engineer with six years of experience building Java and Spring Boot microservices on AWS, REST and GraphQL APIs, and AI features inside backend systems.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: profile.name,
+    url: site,
+    image: `${site}/og.png`,
+    jobTitle: profile.role,
+    worksFor: { '@type': 'Organization', name: 'Accolite Digital' },
+    address: { '@type': 'PostalAddress', addressLocality: 'Kolkata', addressCountry: 'IN' },
+    alumniOf: { '@type': 'CollegeOrUniversity', name: 'Narula Institute of Technology' },
+    email: `mailto:${profile.email}`,
+    sameAs: [profile.github, profile.linkedin],
+    knowsAbout: [
+      'Backend development',
+      'Java',
+      'Spring Boot',
+      'Microservices',
+      'Reactive programming',
+      'GraphQL',
+      'REST APIs',
+      'AWS',
+      'MongoDB',
+      'System design',
+      'LLM integration',
+    ],
+  },
+};
+
+const card = {
+  name: profile.name,
+  role: profile.role,
+  experience_years: 6,
+  based_in: profile.location,
+  stack: ['Java', 'Spring Boot', 'AWS'],
+  currently: 'AI in backend workflows',
+  status: 'open_to_offers',
+};
+
+// Render the card as a highlighted JSON body without pulling in a highlighter.
+const esc = (v: string) => v.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const fmt = (v: unknown): string =>
+  Array.isArray(v)
+    ? `[${v.map(fmt).join(', ')}]`
+    : typeof v === 'number'
+      ? `<span class="n">${v}</span>`
+      : `<span class="s">"${esc(String(v))}"</span>`;
+const body = Object.entries(card)
+  .map(([k, v]) => `  <span class="k">"${k}"</span>: ${fmt(v)}`)
+  .join(',\n');
+const response = `<span class="c">HTTP/1.1 200 OK</span>\n<span class="c">content-type: application/json</span>\n\n{\n${body}\n}`;
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <section class="hero wrap">
+    <div class="intro">
+      <p class="eyebrow">{profile.role} · Accolite Digital</p>
+      <h1>{profile.name}</h1>
+      <p class="headline">{profile.headline}</p>
+      {profile.intro.map((p) => <p class="lead">{p}</p>)}
+      <div class="actions">
+        <a class="btn primary" href={profile.resume} target="_blank" rel="noopener">Download resume</a>
+        <a class="btn" href={`mailto:${profile.email}`}>Email me</a>
+        <a class="btn" href={profile.github} rel="me">GitHub</a>
+        <a class="btn" href={profile.linkedin} rel="me">LinkedIn</a>
+      </div>
+      <p class="status"><span class="dot" aria-hidden="true"></span>{profile.openTo}</p>
+    </div>
+
+    <div class="terminal" aria-label="Profile summary as an API response">
+      <div class="term-bar">
+        <span></span><span></span><span></span>
+        <code>GET /api/v1/engineers/souradip</code>
+      </div>
+      <pre><code set:html={response} /></pre>
+    </div>
+  </section>
+
+  <section class="metrics" aria-label="Impact in numbers">
+    <div class="wrap grid">
+      {metrics.map((m) => (
+        <div class="metric">
+          <p class="value">{m.value}</p>
+          <p class="label">{m.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="work" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">01 · Experience</p>
+        <h2>Where I have shipped production code</h2>
+      </div>
+      <ol class="timeline">
+        {experience.map((r) => (
+          <li class="role">
+            <div class="when">
+              <p class="mono">{r.period}</p>
+              <p class="place">{r.place}</p>
+            </div>
+            <div class="what">
+              <h3>{r.title}, <span>{r.company}</span></h3>
+              <p class="summary">{r.summary}</p>
+              <ul class="points">
+                {r.points.map((p) => <li>{p}</li>)}
+              </ul>
+              <ul class="tags">
+                {r.stack.map((s) => <li>{s}</li>)}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">02 · Projects</p>
+        <h2>Side projects, written up as design docs</h2>
+        <p class="sub">Each one has the problem, the architecture and the tradeoffs I made. Code is on GitHub.</p>
+      </div>
+      <div class="projects">
+        {projects.map((p) => (
+          <article class="project">
+            <p class="eyebrow">{p.year}</p>
+            <h3><a href={`/projects/${p.slug}`}>{p.name}</a></h3>
+            <p>{p.tagline}</p>
+            <ul class="tags">
+              {p.stack.slice(0, 4).map((s) => <li>{s}</li>)}
+            </ul>
+            <div class="links">
+              <a href={`/projects/${p.slug}`}>Read the design notes</a>
+              <a href={p.repo}>Code</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">03 · Toolbox</p>
+        <h2>What I work with</h2>
+      </div>
+      <dl class="skills">
+        {skills.map((s) => (
+          <div>
+            <dt>{s.group}</dt>
+            <dd>{s.items.join(', ')}</dd>
+          </div>
+        ))}
+      </dl>
+      <div class="extras">
+        <div>
+          <h3 class="eyebrow">Education</h3>
+          <p>{education.degree}<br /><span class="muted">{education.school}, {education.period}</span></p>
+        </div>
+        <div>
+          <h3 class="eyebrow">Certifications</h3>
+          <ul>{certifications.map((c) => <li>{c}</li>)}</ul>
+        </div>
+        <div>
+          <h3 class="eyebrow">Recognition</h3>
+          <ul>{awards.map((a) => <li>{a}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="wrap contact">
+      <div class="section-head">
+        <p class="eyebrow">04 · Contact</p>
+        <h2>Hiring for a backend role?</h2>
+        <p class="sub">
+          I am looking for senior backend work at a product company, ideally on systems with real scale. Email is the quickest way to reach me.
+        </p>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href={`mailto:${profile.email}`}>{profile.email}</a>
+        <a class="btn" href={profile.linkedin} rel="me">LinkedIn</a>
+        <a class="btn" href={profile.github} rel="me">GitHub</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: center;
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+  }
+  h1 {
+    font-size: clamp(2.3rem, 5vw, 3.4rem);
+    margin: 0.5rem 0 0.75rem;
+  }
+  .headline {
+    font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+    line-height: 1.4;
+    margin-bottom: 1.25rem;
+  }
+  .lead {
+    color: var(--muted);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 4px color-mix(in srgb, #22c55e 22%, transparent);
+  }
+
+  .terminal {
+    background: #111418;
+    color: #d7dae0;
+    border-radius: 10px;
+    border: 1px solid #23272e;
+    overflow: hidden;
+    box-shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.45);
+  }
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 0.9rem;
+    border-bottom: 1px solid #23272e;
+    background: #171b20;
+  }
+  .term-bar span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3a3f47;
+  }
+  .term-bar code {
+    margin-left: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: #8b929c;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  pre {
+    margin: 0;
+    padding: 1.1rem 1.2rem 1.3rem;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+  pre :global(.c) {
+    color: #6b737e;
+  }
+  pre :global(.k) {
+    color: #7cc4fa;
+  }
+  pre :global(.s) {
+    color: #9fe0b8;
+  }
+  pre :global(.n) {
+    color: #f5c27a;
+  }
+
+  .metrics {
+    border-top: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .metrics .grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .metric {
+    padding: 1.75rem 1.25rem 1.5rem 0;
+  }
+  .metric + .metric {
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--line);
+  }
+  .value {
+    font-family: var(--mono);
+    font-size: 1.9rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin: 0;
+  }
+  .label {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin: 0.2rem 0 0;
+    line-height: 1.45;
+  }
+
+  .sub {
+    color: var(--muted);
+    max-width: 42rem;
+    margin: 0.3rem 0 0;
+  }
+
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .role {
+    display: grid;
+    grid-template-columns: 12rem minmax(0, 1fr);
+    gap: 2rem;
+    padding: 1.75rem 0;
+  }
+  .role + .role {
+    border-top: 1px dashed var(--line);
+  }
+  .when p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .when .place {
+    color: var(--faint);
+  }
+  .what h3 {
+    font-size: 1.15rem;
+  }
+  .what h3 span {
+    color: var(--accent);
+  }
+  .summary {
+    color: var(--muted);
+    margin: 0.3rem 0 0.75rem;
+  }
+  .points {
+    margin-bottom: 1rem;
+  }
+  .points li {
+    margin-bottom: 0.4rem;
+  }
+  .points li::marker {
+    color: var(--faint);
+  }
+
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+  .project {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    transition: border-color 0.15s;
+  }
+  .project:hover {
+    border-color: var(--accent);
+  }
+  .project h3 {
+    font-size: 1.2rem;
+  }
+  .project h3 a {
+    text-decoration: none;
+  }
+  .project p {
+    margin: 0;
+  }
+  .project > p:not(.eyebrow) {
+    color: var(--muted);
+  }
+  .links {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: auto;
+    padding-top: 0.6rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 2.5rem;
+    margin: 0;
+  }
+  .skills > div {
+    display: grid;
+    grid-template-columns: 11rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  dt {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--muted);
+    padding-top: 0.15rem;
+  }
+  dd {
+    margin: 0;
+  }
+  .extras {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    margin-top: 2.75rem;
+  }
+  .extras h3 {
+    margin-bottom: 0.6rem;
+  }
+  .extras ul {
+    padding-left: 1rem;
+  }
+  .extras li {
+    margin-bottom: 0.3rem;
+  }
+  .muted {
+    color: var(--muted);
+  }
+
+  .contact .actions {
+    margin-top: 0;
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding-top: 3rem;
+    }
+    .metrics .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .metric:nth-child(odd) {
+      border-left: 0;
+      padding-left: 0;
+    }
+    .metric:nth-child(n + 3) {
+      border-top: 1px solid var(--line);
+    }
+    .skills {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 640px) {
+    .role {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    .projects {
+      grid-template-columns: 1fr;
+    }
+    .skills > div {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
+    .extras {
+      grid-template-columns: 1fr;
+    }
+    pre {
+      font-size: 0.74rem;
+    }
+  }
+</style>

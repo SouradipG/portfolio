@@ -1,0 +1,106 @@
+---
+// Draws a simple layered architecture diagram. Each inner array is a row
+// of boxes. Arrows come from `links`, or join every box to the next row.
+interface Props {
+  layers: string[][];
+  links?: [string, string][];
+  label: string;
+}
+
+const { layers, links, label } = Astro.props;
+
+const width = 560;
+const boxH = 40;
+const rowGap = 34;
+const colGap = 18;
+const charW = 7.4;
+
+const rows = layers.map((row, r) => {
+  const widths = row.map((t) => Math.max(140, t.length * charW + 32));
+  const total = widths.reduce((a, b) => a + b, 0) + colGap * (row.length - 1);
+  let x = (width - total) / 2;
+  const y = r * (boxH + rowGap) + 1;
+  return row.map((text, i) => {
+    const box = { text, x, y, w: widths[i] };
+    x += widths[i] + colGap;
+    return box;
+  });
+});
+
+const boxes = new Map(rows.flat().map((b) => [b.text, b]));
+const pairs: [string, string][] =
+  links ?? layers.slice(1).flatMap((row, r) => layers[r].flatMap((from) => row.map((to) => [from, to] as [string, string])));
+
+const edges = pairs.map(([a, b]) => {
+  const from = boxes.get(a)!;
+  const to = boxes.get(b)!;
+  const down = to.y > from.y;
+  return {
+    x1: from.x + from.w / 2,
+    y1: down ? from.y + boxH : from.y,
+    x2: to.x + to.w / 2,
+    y2: down ? to.y - 3 : to.y + boxH + 3,
+  };
+});
+
+const height = rows.length * (boxH + rowGap) - rowGap + 2;
+const markerId = `arrow-${label.replace(/\W+/g, '').toLowerCase()}`;
+---
+
+<figure class="diagram">
+  <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={label}>
+    <defs>
+      <marker id={markerId} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="currentColor"></path>
+      </marker>
+    </defs>
+    <g class="edges">
+      {edges.map((e) => <line {...e} marker-end={`url(#${markerId})`} />)}
+    </g>
+    {rows.flat().map((b, i) => (
+      <g class={i === 0 ? 'box entry' : 'box'}>
+        <rect x={b.x} y={b.y} width={b.w} height={boxH} rx="6" />
+        <text x={b.x + b.w / 2} y={b.y + boxH / 2}>{b.text}</text>
+      </g>
+    ))}
+  </svg>
+</figure>
+
+<style>
+  .diagram {
+    margin: 0;
+    padding: 1.5rem 1rem;
+    background: var(--code-bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background-image: radial-gradient(var(--line) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+  svg {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    height: auto;
+    color: var(--faint);
+  }
+  .edges line {
+    stroke: currentColor;
+    stroke-width: 1.3;
+  }
+  rect {
+    fill: var(--surface);
+    stroke: var(--line);
+    stroke-width: 1.2;
+  }
+  .entry rect {
+    stroke: var(--accent);
+  }
+  text {
+    fill: var(--ink);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+</style>
