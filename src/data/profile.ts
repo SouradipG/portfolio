@@ -13,8 +13,8 @@ export const profile = {
   resume: '/souradip-ganguly-resume.pdf',
   pitch: 'I modernise legacy systems and put AI to work inside Java backends.',
   intro: [
-    'Six years of building Java and Spring Boot services on AWS for telecom, banking and insurance. Most of that time has gone into the unglamorous, high value work of taking old systems that make money and making them faster, simpler and easier to change.',
-    'Right now I lead backend work for one of the world’s largest telecom companies. I designed the service that moved their agent channels onto a modern digital order journey, and I’m building AI powered tooling for their sales teams.',
+    'Six years of building Java and Spring Boot microservices on AWS for telecom, banking and insurance. Most of that time has gone into the unglamorous, high value work of taking old systems that make money and making them faster, simpler and easier to change.',
+    'Right now I lead backend work for one of the world’s largest telecom companies. I designed the service that moved their agent channels onto a modern digital order journey, and I’m building agentic AI tooling on Claude LLMs for their sales teams. On my own time I build distributed systems that stay correct under heavy concurrency: a payments ledger, a flash sale backend and a multi tenant AI gateway.',
   ],
   openTo: 'Open to senior and lead backend roles',
 };
@@ -64,7 +64,7 @@ export const experience: Role[] = [
       'Moved the busiest flows to reactive programming, keeping the platform responsive through a 50% rise in traffic.',
       'Automated workflows over more than a million records on AWS and MongoDB, cutting manual effort by 40%.',
     ],
-    stack: ['Java 21', 'Spring Boot', 'MongoDB', 'AWS ECS', 'Amazon S3', 'REST', 'GraphQL', 'Spring WebFlux', 'Agentic LLM workflows', 'Salesforce', 'ServiceNow'],
+    stack: ['Java 21', 'Spring Boot', 'Microservices', 'MongoDB', 'AWS ECS', 'Amazon S3', 'REST', 'GraphQL', 'Spring WebFlux', 'Agentic AI', 'Claude LLMs', 'Salesforce', 'ServiceNow'],
   },
   {
     company: companies.infosys,
@@ -98,11 +98,12 @@ export const buildingWith = ['Java 25', 'Spring Boot 4', 'Spring AI 2.0', 'Model
 
 export const skills = [
   { group: 'Languages', items: ['Java (up to 25)', 'SQL', 'Python', 'Lua (Redis scripts)'] },
-  { group: 'Frameworks', items: ['Spring Boot', 'Spring WebFlux', 'Project Reactor', 'Spring Security', 'Hibernate / JPA', 'R2DBC'] },
+  { group: 'Frameworks', items: ['Spring Boot', 'Spring MVC', 'Spring WebFlux', 'Project Reactor', 'Spring Security', 'Spring Data JPA', 'Hibernate', 'Spring AI', 'R2DBC'] },
+  { group: 'Architecture', items: ['Microservices', 'Distributed systems', 'System design', 'Event driven architecture', 'Concurrency and multithreading', 'Idempotency', 'Saga and transactional outbox', 'Caching', 'Rate limiting'] },
   { group: 'APIs and integration', items: ['REST', 'GraphQL', 'Server Sent Events', 'Apache Kafka', 'Salesforce', 'ServiceNow'] },
   { group: 'Data', items: ['MongoDB', 'PostgreSQL', 'Redis', 'MySQL'] },
   { group: 'Cloud and delivery', items: ['AWS (ECS, EC2, Lambda, S3, CloudWatch)', 'Docker', 'Maven', 'CI/CD'] },
-  { group: 'AI in the backend', items: ['Agentic LLM workflows', 'Model routing', 'Prompt design', 'Hugging Face', 'Apache Tika'] },
+  { group: 'AI in the backend', items: ['LLM integration', 'Agentic AI', 'Claude', 'Spring AI', 'Model routing', 'Prompt engineering', 'Hugging Face', 'Apache Tika'] },
   { group: 'Testing', items: ['JUnit', 'Mockito', 'Testcontainers', 'k6 load tests', 'TDD'] },
 ];
 
