@@ -31,7 +31,7 @@ const jsonLd = {
     '@type': 'Person',
     name: profile.name,
     url: site,
-    image: `${site}/og.png`,
+    image: `${site}/souradip.jpg`,
     jobTitle: profile.role,
     worksFor: { '@type': 'Organization', name: companies.bounteous.name, sameAs: companies.bounteous.linkedin },
     address: { '@type': 'PostalAddress', addressLocality: 'Kolkata', addressCountry: 'IN' },
@@ -80,6 +80,15 @@ const formAction = `https://formsubmit.co/ajax/${profile.email}`;
   <div class="shell" id="top">
     <aside class="side">
       <div class="side-inner">
+        <img
+          class="avatar"
+          src="/souradip-192.webp"
+          srcset="/souradip-192.webp 1x, /souradip-384.webp 2x"
+          width="96"
+          height="96"
+          alt={`Photo of ${profile.name}`}
+          fetchpriority="high"
+        />
         <p class="eyebrow">
           {profile.role} at <a href={companies.bounteous.linkedin} target="_blank" rel="noopener">{companies.bounteous.name}</a>
         </p>
@@ -469,6 +478,16 @@ const formAction = `https://formsubmit.co/ajax/${profile.email}`;
   }
   .eyebrow a:hover {
     text-decoration: underline;
+  }
+  .avatar {
+    display: block;
+    box-sizing: content-box;
+    width: 96px;
+    height: 96px;
+    margin-bottom: 1.25rem;
+    padding: 4px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
   }
   h1 {
     font-size: clamp(2.4rem, 4.2vw, 3.3rem);
