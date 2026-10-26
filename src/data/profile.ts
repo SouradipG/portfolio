@@ -97,13 +97,13 @@ export const experience: Role[] = [
 export const buildingWith = ['Java 25', 'Spring Boot 4', 'Spring AI 2.0', 'Model Context Protocol', 'Virtual threads', 'Apache Kafka', 'Kubernetes', 'OpenTelemetry'];
 
 export const skills = [
-  { group: 'Languages', items: ['Java 21', 'SQL', 'Python'] },
+  { group: 'Languages', items: ['Java (up to 25)', 'SQL', 'Python', 'Lua (Redis scripts)'] },
   { group: 'Frameworks', items: ['Spring Boot', 'Spring WebFlux', 'Project Reactor', 'Spring Security', 'Hibernate / JPA', 'R2DBC'] },
   { group: 'APIs and integration', items: ['REST', 'GraphQL', 'Server Sent Events', 'Apache Kafka', 'Salesforce', 'ServiceNow'] },
-  { group: 'Data', items: ['MongoDB', 'PostgreSQL', 'MySQL'] },
+  { group: 'Data', items: ['MongoDB', 'PostgreSQL', 'Redis', 'MySQL'] },
   { group: 'Cloud and delivery', items: ['AWS (ECS, EC2, Lambda, S3, CloudWatch)', 'Docker', 'Maven', 'CI/CD'] },
   { group: 'AI in the backend', items: ['Agentic LLM workflows', 'Model routing', 'Prompt design', 'Hugging Face', 'Apache Tika'] },
-  { group: 'Testing', items: ['JUnit', 'Mockito', 'WebTestClient', 'TDD'] },
+  { group: 'Testing', items: ['JUnit', 'Mockito', 'Testcontainers', 'k6 load tests', 'TDD'] },
 ];
 
 export const helpWith = [
@@ -158,14 +158,6 @@ export const recommendations: { quote: string; name: string; title: string; rela
     link: 'https://www.linkedin.com/in/sudha-s-balaguru-774344a2/',
   },
 ];
-
-export const earlyWork = {
-  name: 'Hotel Management System',
-  repo: 'https://github.com/iamsomraj/Hotel-Management',
-  summary:
-    'My first team project, built with three classmates in college. A web based hotel management system with a PHP backend, AJAX powered search and Chart.js financial reports. I worked across the whole project, from the server side logic and session handling to the Bootstrap screens.',
-  stack: ['PHP', 'JavaScript', 'AJAX', 'Bootstrap', 'Chart.js'],
-};
 
 export const education = {
   school: 'Narula Institute of Technology, Kolkata',

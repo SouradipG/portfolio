@@ -14,7 +14,6 @@ import {
   awards,
   recommendations,
   education,
-  earlyWork,
 } from '../data/profile';
 import { projects } from '../data/projects';
 
@@ -222,11 +221,9 @@ const formAction = `https://formsubmit.co/ajax/${profile.email}`;
             </a>
           ))}
         </div>
-        <div class="early">
-          <p class="eyebrow">Where it started</p>
-          <h3><a href={earlyWork.repo} target="_blank" rel="noopener">{earlyWork.name}</a></h3>
-          <p>{earlyWork.summary}</p>
-        </div>
+        <a class="more" href={`${profile.github}?tab=repositories`} target="_blank" rel="noopener">
+          Show more on GitHub <span aria-hidden="true">→</span>
+        </a>
       </section>
 
       <section id="skills" class="block">
@@ -838,21 +835,18 @@ const formAction = `https://formsubmit.co/ajax/${profile.email}`;
     color: var(--muted);
     margin-bottom: 0.85rem;
   }
-  .early {
-    margin-top: 1.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px dashed var(--line);
+  .more {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-weight: 500;
+    text-decoration: none;
   }
-  .early .eyebrow {
-    margin-bottom: 0.3rem;
+  .more span {
+    display: inline-block;
+    transition: transform 0.15s;
   }
-  .early h3 {
-    font-size: 1.02rem;
-    margin-bottom: 0.3rem;
-  }
-  .early p:not(.eyebrow) {
-    color: var(--muted);
-    font-size: 0.95rem;
+  .more:hover span {
+    transform: translateX(4px);
   }
 
   .skills {
