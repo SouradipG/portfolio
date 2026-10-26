@@ -13,7 +13,7 @@ export const profile = {
   headline: 'I build Java services that keep working when the traffic doubles.',
   intro: [
     'Backend engineer with six years of shipping Spring Boot microservices on AWS for telecom, banking and insurance clients. I care about clear APIs, predictable latency and systems the next engineer can actually reason about.',
-    'Lately most of my time goes into putting AI to practical use in backend systems. At Accolite I built an integration layer that moved a telecom client’s agents off a legacy Salesforce portal onto a modern online journey, and business volumes went up 30% in three months.',
+    'Lately most of my time goes into putting AI to practical use in backend systems. At Accolite I built an integration layer that moved the sales agents of one of the world’s largest telecom companies off a legacy Salesforce portal onto a modern online journey, and business volumes went up 30% in three months.',
   ],
   openTo: 'Open to senior backend roles at product companies',
 };
@@ -41,7 +41,7 @@ export const experience: Role[] = [
     title: 'Lead Software Engineer',
     period: 'Jan 2024 to now',
     place: 'Remote',
-    summary: 'Leading backend work for a large European telecom operator.',
+    summary: 'Leading backend work for one of the world’s largest telecom companies.',
     points: [
       'Built a middle layer that connects the client’s legacy sales channels, including a dated Salesforce agent portal, to the new online journey. Agents now work in one modern interface, and business volumes rose 30% in the first three months.',
       'Built several AI proofs of concept for the client that have directly helped grow their business.',
