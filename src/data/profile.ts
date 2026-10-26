@@ -32,7 +32,6 @@ export const companies: Record<string, Company> = {
   bounteous: {
     name: 'Bounteous',
     linkedin: 'https://www.linkedin.com/company/bounteous/',
-    note: 'formerly Accolite Digital',
   },
   infosys: { name: 'Infosys', linkedin: 'https://www.linkedin.com/company/infosys/' },
   tcs: { name: 'Tata Consultancy Services', linkedin: 'https://www.linkedin.com/company/tata-consultancy-services/' },
@@ -132,8 +131,8 @@ export const certifications = [
 ];
 
 export const awards = [
-  { name: 'Emerging Icon', from: 'Accolite Digital (now Bounteous)' },
-  { name: 'Extra Miler', from: 'Accolite Digital (now Bounteous)' },
+  { name: 'Emerging Icon', from: 'Bounteous' },
+  { name: 'Extra Miler', from: 'Bounteous' },
   { name: 'Star of the Month', from: 'Tata Consultancy Services' },
   { name: 'On the Spot', from: 'Tata Consultancy Services' },
   { name: 'Best Team', from: 'Tata Consultancy Services' },
@@ -147,7 +146,7 @@ export const recommendations: { quote: string; name: string; title: string; rela
       'He was deeply involved in managing deployments, maintaining code quality, and contributing to clean, maintainable, and scalable solutions. Whether it was troubleshooting complex production issues or proactively identifying areas for improvement in our Codebase and CI/CD pipeline, Souradip could be counted on to deliver.',
     name: 'Lakhvir Bansal',
     title: 'Associate Technical Director, Bounteous',
-    relation: 'managed me at Accolite',
+    relation: 'managed me at Bounteous',
     link: 'https://www.linkedin.com/in/lakhvir-bansal/',
   },
   {
