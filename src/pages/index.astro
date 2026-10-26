@@ -64,8 +64,8 @@ const nav = [
   { id: 'contact', label: 'Contact' },
 ];
 
-const mail = (subject: string) =>
-  `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('Hi Souradip,\n\n')}`;
+// Messages go through FormSubmit so visitors don't need a mail app set up.
+const formAction = `https://formsubmit.co/ajax/${profile.email}`;
 ---
 
 <Base title={title} description={description} jsonLd={jsonLd} header={false}>
@@ -73,7 +73,7 @@ const mail = (subject: string) =>
 
   <div class="mobile-bar">
     <a class="mark" href="#top">sg<span>_</span></a>
-    <a class="btn primary small" href={mail('Hello from your portfolio')}>Get in touch</a>
+    <a class="btn primary small" href="#contact">Get in touch</a>
     <ThemeToggle />
   </div>
 
@@ -103,7 +103,7 @@ const mail = (subject: string) =>
         <div class="side-foot">
           <p class="status"><span class="dot" aria-hidden="true"></span>{profile.openTo}</p>
           <div class="actions">
-            <a class="btn primary" href={mail('Hello from your portfolio')}>Email me</a>
+            <a class="btn primary" href="#contact">Get in touch</a>
             <a class="btn" href={profile.resume} target="_blank" rel="noopener">Resume</a>
           </div>
           <div class="socials">
@@ -172,19 +172,7 @@ const mail = (subject: string) =>
 
       <section id="recognition" class="block">
         <h2 class="label">Recognition</h2>
-        <h3 class="title">Awards along the way</h3>
-        <ul class="awards">
-          {awards.map((a) => (
-            <li class="award">
-              <svg class="medal" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-                <circle cx="12" cy="9" r="6"></circle>
-                <path d="M8.5 14 7 22l5-3 5 3-1.5-8"></path>
-              </svg>
-              <p class="aname">{a.name}</p>
-              <p class="afrom">{a.from}</p>
-            </li>
-          ))}
-        </ul>
+        <h3 class="title">What the people I’ve worked for say</h3>
         {recommendations.length > 0 && (
           <div class="quotes">
             {recommendations.map((r) => (
@@ -198,6 +186,19 @@ const mail = (subject: string) =>
             ))}
           </div>
         )}
+        <p class="eyebrow sub">Awards along the way</p>
+        <ul class="awards">
+          {awards.map((a) => (
+            <li class="award">
+              <svg class="medal" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                <circle cx="12" cy="9" r="6"></circle>
+                <path d="M8.5 14 7 22l5-3 5 3-1.5-8"></path>
+              </svg>
+              <p class="aname">{a.name}</p>
+              <p class="afrom">{a.from}</p>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section id="projects" class="block">
@@ -244,16 +245,50 @@ const mail = (subject: string) =>
       <section id="contact" class="block">
         <h2 class="label">Contact</h2>
         <h3 class="title">Need someone for this kind of work?</h3>
-        <p class="lead">Pick what fits and the email starts itself.</p>
+        <p class="lead">Pick what fits, add a line or two, and it lands straight in my inbox.</p>
         <div class="help">
           {helpWith.map((h) => (
-            <a class="help-card" href={mail(h.subject)}>
+            <button class="help-card" type="button" data-topic={h.subject}>
               <h4>{h.title}</h4>
               <p>{h.body}</p>
               <span class="go">Start a conversation →</span>
-            </a>
+            </button>
           ))}
         </div>
+
+        <form class="msg" id="msg" action={formAction} method="post">
+          <div class="row">
+            <label>
+              <span>Name</span>
+              <input name="name" autocomplete="name" required maxlength="100" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" autocomplete="email" required maxlength="150" />
+            </label>
+          </div>
+          <label>
+            <span>About</span>
+            <select name="topic">
+              <option>Hello from your portfolio</option>
+              {helpWith.map((h) => <option>{h.subject}</option>)}
+            </select>
+          </label>
+          <label>
+            <span>Message</span>
+            <textarea name="message" rows="5" required maxlength="4000"></textarea>
+          </label>
+          <input class="trap" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <div class="send">
+            <button class="btn primary" type="submit">Send message</button>
+            <p class="sent-note" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <p class="direct">
+          Prefer your own inbox? Write to <span class="mono">{profile.email}</span>
+          <button class="copy-mail" type="button" data-copy={profile.email}>Copy</button>
+        </p>
 
         <div class="curl">
           <div class="curl-head">
@@ -325,7 +360,7 @@ const mail = (subject: string) =>
     spot.classList.add('on');
   }
 
-  document.querySelectorAll<HTMLButtonElement>('.copy').forEach((btn) =>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) =>
     btn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(btn.dataset.copy!);
@@ -336,6 +371,55 @@ const mail = (subject: string) =>
       setTimeout(() => (btn.textContent = 'Copy'), 1800);
     }),
   );
+
+  // Contact form: the help cards pick a topic, the form posts over fetch.
+  const form = document.querySelector<HTMLFormElement>('#msg');
+  if (form) {
+    const note = form.querySelector<HTMLElement>('.sent-note')!;
+    const submit = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+
+    document.querySelectorAll<HTMLButtonElement>('[data-topic]').forEach((card) =>
+      card.addEventListener('click', () => {
+        form.querySelector<HTMLSelectElement>('select')!.value = card.dataset.topic!;
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        form.querySelector<HTMLTextAreaElement>('textarea')!.focus({ preventScroll: true });
+      }),
+    );
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      if (data._honey) return;
+      submit.disabled = true;
+      note.className = 'sent-note';
+      note.textContent = 'Sending…';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            name: data.name,
+            email: data.email,
+            message: data.message,
+            _subject: `${data.topic} (from ${data.name})`,
+            _replyto: data.email,
+            _template: 'table',
+            _captcha: 'false',
+          }),
+        });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok || String(body.success) === 'false') throw new Error();
+        form.reset();
+        note.classList.add('ok');
+        note.textContent = 'Thanks, your message is in my inbox. I’ll get back to you soon.';
+      } catch (_) {
+        note.classList.add('err');
+        note.textContent = 'That didn’t go through. Please copy my email below and write to me directly.';
+      } finally {
+        submit.disabled = false;
+      }
+    });
+  }
 </script>
 
 <style>
@@ -663,8 +747,12 @@ const mail = (subject: string) =>
   }
   .quotes {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
+  }
+  .eyebrow.sub {
+    margin: 2.25rem 0 0;
   }
   .quote {
     margin: 0;
@@ -796,6 +884,9 @@ const mail = (subject: string) =>
   .help-card {
     display: flex;
     flex-direction: column;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
     padding: 1.15rem;
     background: var(--surface);
     border: 1px solid var(--line);
@@ -823,6 +914,119 @@ const mail = (subject: string) =>
     margin-top: auto;
     font-size: 0.86rem;
     font-weight: 500;
+    color: var(--accent);
+  }
+
+  .msg {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1.25rem;
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .msg .row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+  .msg label {
+    display: grid;
+    gap: 0.3rem;
+  }
+  .msg label span {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .msg input,
+  .msg select,
+  .msg textarea {
+    width: 100%;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.6rem 0.7rem;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .msg select {
+    background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+    background-position: calc(100% - 1.1rem) 55%, calc(100% - 0.8rem) 55%;
+    background-size: 0.3rem 0.3rem;
+    background-repeat: no-repeat;
+    padding-right: 2rem;
+  }
+  .msg textarea {
+    resize: vertical;
+    min-height: 7rem;
+  }
+  .msg input:focus,
+  .msg select:focus,
+  .msg textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .msg .trap {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+  }
+  .send {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 1rem;
+  }
+  .send button {
+    cursor: pointer;
+    font: inherit;
+    font-weight: 500;
+  }
+  .send button:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .sent-note {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .sent-note.ok {
+    color: var(--accent);
+  }
+  .sent-note.err {
+    color: #c2410c;
+  }
+  .direct {
+    margin: 1rem 0 0;
+    font-size: 0.92rem;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+  .direct .mono {
+    color: var(--ink);
+  }
+  .copy-mail {
+    margin-left: 0.4rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--surface);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .copy-mail:hover {
+    border-color: var(--accent);
     color: var(--accent);
   }
 
@@ -945,6 +1149,12 @@ const mail = (subject: string) =>
   }
 
   @media (max-width: 640px) {
+    .quotes {
+      grid-template-columns: 1fr;
+    }
+    .msg .row {
+      grid-template-columns: 1fr;
+    }
     .metrics {
       grid-template-columns: 1fr 1fr;
     }

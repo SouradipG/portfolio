@@ -139,8 +139,25 @@ export const awards = [
   { name: 'NIT Jewels', from: 'Narula Institute of Technology' },
 ];
 
-// LinkedIn recommendations, shown as quotes once added.
-export const recommendations: { quote: string; name: string; title: string; relation: string; link?: string }[] = [];
+// Excerpts from recommendations on my LinkedIn profile, word for word.
+export const recommendations: { quote: string; name: string; title: string; relation: string; link?: string }[] = [
+  {
+    quote:
+      'He was deeply involved in managing deployments, maintaining code quality, and contributing to clean, maintainable, and scalable solutions. Whether it was troubleshooting complex production issues or proactively identifying areas for improvement in our Codebase and CI/CD pipeline, Souradip could be counted on to deliver.',
+    name: 'Lakhvir Bansal',
+    title: 'Associate Technical Director, Bounteous',
+    relation: 'managed me at Accolite',
+    link: 'https://www.linkedin.com/in/lakhvir-bansal/',
+  },
+  {
+    quote:
+      'When it comes to coding, Souradip’s work is all about clean, efficient, and future-proof solutions. Whether solving tricky problems or rolling out best practices, he handles it all easily. Plus, he brings a compelling passion and a collaborative spirit that uplifts the entire team.',
+    name: 'Sudha S Balaguru',
+    title: 'Engineering Manager',
+    relation: 'managed me directly',
+    link: 'https://www.linkedin.com/in/sudha-s-balaguru-774344a2/',
+  },
+];
 
 export const earlyWork = {
   name: 'Hotel Management System',
