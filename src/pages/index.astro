@@ -12,6 +12,7 @@ import {
   helpWith,
   certifications,
   awards,
+  recommendations,
   education,
   earlyWork,
 } from '../data/profile';
@@ -57,6 +58,7 @@ const nav = [
   { id: 'about', label: 'About' },
   { id: 'impact', label: 'Featured work' },
   { id: 'work', label: 'Experience' },
+  { id: 'recognition', label: 'Recognition' },
   { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
   { id: 'contact', label: 'Contact' },
@@ -168,6 +170,36 @@ const mail = (subject: string) =>
         </div>
       </section>
 
+      <section id="recognition" class="block">
+        <h2 class="label">Recognition</h2>
+        <h3 class="title">Awards along the way</h3>
+        <ul class="awards">
+          {awards.map((a) => (
+            <li class="award">
+              <svg class="medal" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                <circle cx="12" cy="9" r="6"></circle>
+                <path d="M8.5 14 7 22l5-3 5 3-1.5-8"></path>
+              </svg>
+              <p class="aname">{a.name}</p>
+              <p class="afrom">{a.from}</p>
+            </li>
+          ))}
+        </ul>
+        {recommendations.length > 0 && (
+          <div class="quotes">
+            {recommendations.map((r) => (
+              <figure class="quote">
+                <blockquote>“{r.quote}”</blockquote>
+                <figcaption>
+                  {r.link ? <a href={r.link} target="_blank" rel="noopener">{r.name}</a> : r.name}
+                  <span>{r.title} · {r.relation}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
+      </section>
+
       <section id="projects" class="block">
         <h2 class="label">Projects</h2>
         <div class="projects">
@@ -201,10 +233,6 @@ const mail = (subject: string) =>
           <div>
             <h3 class="eyebrow">Certifications</h3>
             <ul>{certifications.map((c) => <li>{c}</li>)}</ul>
-          </div>
-          <div>
-            <h3 class="eyebrow">Recognition</h3>
-            <ul>{awards.map((a) => <li>{a}</li>)}</ul>
           </div>
           <div>
             <h3 class="eyebrow">Education</h3>
@@ -602,6 +630,69 @@ const mail = (subject: string) =>
     color: var(--faint);
   }
 
+  .awards {
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+  .award {
+    padding: 1.1rem 1.1rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .medal {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.6;
+    stroke-linejoin: round;
+  }
+  .aname {
+    margin: 0.55rem 0 0.15rem;
+    font-weight: 600;
+    font-size: 1.02rem;
+  }
+  .afrom {
+    margin: 0;
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .quotes {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .quote {
+    margin: 0;
+    padding: 1.25rem 1.4rem;
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    border-radius: 0 10px 10px 0;
+  }
+  .quote blockquote {
+    margin: 0 0 0.75rem;
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+  .quote figcaption {
+    display: grid;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .quote figcaption a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .quote figcaption span {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
   .projects {
     display: grid;
     gap: 1rem;
@@ -678,7 +769,7 @@ const mail = (subject: string) =>
   }
   .extras {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
     margin-top: 2.25rem;
     font-size: 0.93rem;
@@ -867,6 +958,9 @@ const mail = (subject: string) =>
     .help,
     .extras {
       grid-template-columns: 1fr;
+    }
+    .awards {
+      grid-template-columns: 1fr 1fr;
     }
     .impact-row {
       gap: 0.6rem;

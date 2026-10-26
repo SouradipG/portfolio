@@ -131,9 +131,16 @@ export const certifications = [
 ];
 
 export const awards = [
-  'Emerging Icon and Extra Miler, Accolite Digital (now Bounteous)',
-  'Star of the Month, On the Spot and Best Team, TCS',
+  { name: 'Emerging Icon', from: 'Accolite Digital (now Bounteous)' },
+  { name: 'Extra Miler', from: 'Accolite Digital (now Bounteous)' },
+  { name: 'Star of the Month', from: 'Tata Consultancy Services' },
+  { name: 'On the Spot', from: 'Tata Consultancy Services' },
+  { name: 'Best Team', from: 'Tata Consultancy Services' },
+  { name: 'NIT Jewels', from: 'Narula Institute of Technology' },
 ];
+
+// LinkedIn recommendations, shown as quotes once added.
+export const recommendations: { quote: string; name: string; title: string; relation: string; link?: string }[] = [];
 
 export const earlyWork = {
   name: 'Hotel Management System',
