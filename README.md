@@ -1,6 +1,6 @@
 # portfolio
 
-Source for my personal site, [portfolio-souradipg.vercel.app](https://portfolio-souradipg.vercel.app).
+Source for my personal site, [portfolio-souradip.vercel.app](https://portfolio-souradip.vercel.app).
 
 I'm a backend engineer working mostly with Java, Spring Boot and AWS. The site is a plain static build: no client framework, no tracking scripts, and almost no JavaScript beyond the dark mode toggle. Every page is HTML generated at build time and served from Vercel's CDN.
 
