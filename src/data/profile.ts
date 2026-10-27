@@ -13,7 +13,7 @@ export const profile = {
   resume: '/souradip-ganguly-resume.pdf',
   pitch: 'I modernise legacy systems and put AI to work inside Java backends.',
   intro: [
-    'Six years of building scalable, high traffic Java backend systems for global enterprises in telecom, banking and insurance. Most of that time has gone into turning legacy platforms into digital journeys that grow revenue, and into leading and mentoring the engineers who build them.',
+    'Six years of building Java backend systems for telecom, banking and insurance that hold up under heavy traffic. Most of that time has gone into moving old platforms onto modern digital journeys and running large data migrations, work that has grown order volumes, cut manual effort and sped up delivery. I lead and mentor engineers and work closely with business stakeholders to ship on time.',
     'Right now I lead backend work for British Telecom, where I launched the service that moved contact centre and store orders onto the new digital journey. I also use AI across design, delivery and the tools the business runs on, such as dashboards that show stakeholders where every order stands. On my own time I build distributed systems that stay correct under heavy concurrency: a payments ledger, a flash sale backend and a multi tenant AI gateway.',
   ],
   openTo: 'Open to senior and lead backend roles',
@@ -97,14 +97,14 @@ export const experience: Role[] = [
 export const buildingWith = ['Java 25', 'Spring Boot 4', 'Spring AI 2.0', 'Model Context Protocol', 'Virtual threads', 'Apache Kafka', 'Kubernetes', 'OpenTelemetry'];
 
 export const skills = [
-  { group: 'Languages', items: ['Java (up to 25)', 'SQL', 'Python', 'Lua (Redis scripts)'] },
-  { group: 'Frameworks', items: ['Spring Boot', 'Spring MVC', 'Spring WebFlux', 'Project Reactor', 'Spring Security', 'Spring Data JPA', 'Hibernate', 'Spring AI', 'R2DBC'] },
-  { group: 'Architecture', items: ['Microservices', 'Distributed systems', 'System design', 'Event driven architecture', 'Concurrency and multithreading', 'Idempotency', 'Saga and transactional outbox', 'Caching', 'Rate limiting'] },
-  { group: 'APIs and integration', items: ['REST', 'GraphQL', 'Server Sent Events', 'Apache Kafka'] },
-  { group: 'Data', items: ['MongoDB', 'PostgreSQL', 'Redis', 'MySQL'] },
-  { group: 'Cloud and delivery', items: ['AWS (ECS, EC2, Lambda, S3, CloudWatch)', 'Docker', 'Maven', 'CI/CD'] },
-  { group: 'AI in the backend', items: ['LLM integration', 'Agentic AI', 'Claude', 'Spring AI', 'Model routing', 'Prompt engineering', 'Hugging Face', 'Apache Tika'] },
-  { group: 'Testing', items: ['JUnit', 'Mockito', 'Testcontainers', 'k6 load tests', 'TDD'] },
+  { group: 'Languages', items: ['Java (17, 21, 25)', 'SQL', 'Python'] },
+  { group: 'Backend', items: ['Spring Boot', 'Spring WebFlux', 'Spring Security', 'Spring Data JPA', 'Hibernate', 'REST APIs', 'GraphQL', 'gRPC'] },
+  { group: 'Architecture', items: ['Microservices', 'Distributed systems', 'System design', 'Event driven architecture', 'Scalability', 'High availability', 'Concurrency'] },
+  { group: 'Data and messaging', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Elasticsearch', 'Apache Kafka'] },
+  { group: 'Cloud and DevOps', items: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'CI/CD', 'GitHub Actions', 'Jenkins'] },
+  { group: 'Observability and testing', items: ['OpenTelemetry', 'Prometheus', 'Grafana', 'JUnit', 'Mockito', 'Testcontainers'] },
+  { group: 'AI engineering', items: ['Agentic AI', 'AI agents', 'LLM orchestration', 'Tool calling', 'RAG', 'Vector databases', 'MCP', 'Spring AI', 'Claude Code'] },
+  { group: 'Leadership', items: ['Mentoring', 'Code reviews', 'Stakeholder communication', 'Cross team collaboration', 'Agile and Scrum'] },
 ];
 
 export const helpWith = [
