@@ -1,8 +1,8 @@
 ---
-// Animated picture of Omni Context Service: orders start in the legacy
+// Animated picture of the order handover service: orders start in the legacy
 // channels, the service captures context once, and the agent lands in the
 // modern order journey.
-const sources = ['Salesforce agent desktop', 'ServiceNow', 'Retail store systems', 'Other legacy apps'];
+const sources = ['Contact centre desktop', 'Service desk tools', 'Retail store systems', 'Other legacy apps'];
 
 const rowH = 58;
 const top = 20;
@@ -22,7 +22,7 @@ const paths = sources.map((_, i) => {
 const outPath = `M${hubX + hubW} ${mid} L${outX} ${mid}`;
 
 // Narrow screens get a top to bottom version so the labels stay readable.
-const short = ['Salesforce desktop', 'ServiceNow', 'Store systems', 'Legacy apps'];
+const short = ['Contact centre', 'Service desk', 'Store systems', 'Legacy apps'];
 const tW = 340;
 const cellW = 155;
 const cells = short.map((t, i) => ({ t, x: i % 2 === 0 ? 10 : tW - 10 - cellW, y: 10 + Math.floor(i / 2) * 52 }));
@@ -34,8 +34,8 @@ const tOut = `M${tW / 2} ${tHubY + 76} L${tW / 2} ${tOutY}`;
 
 <figure class="omni">
   <svg class="wide" viewBox={`0 0 690 ${height}`} role="img" aria-labelledby="omni-title omni-desc">
-    <title id="omni-title">How Omni Context Service works</title>
-    <desc id="omni-desc">Orders start in legacy channels such as a Salesforce agent desktop, ServiceNow and retail store systems. Omni Context Service stores the customer context as a session in MongoDB and hands the agent into the modern Omni order journey, which reads that session at every step.</desc>
+    <title id="omni-title">How the order handover works</title>
+    <desc id="omni-desc">Orders start in legacy channels such as the contact centre desktop, service desk tools and retail store systems. One service captures the customer context once and hands the agent into the modern digital order journey, which reads that context at every step.</desc>
 
     {paths.map((d) => <path class="wire" d={d} />)}
     <path class="wire out" d={outPath} />
@@ -49,14 +49,14 @@ const tOut = `M${tW / 2} ${tHubY + 76} L${tW / 2} ${tOutY}`;
 
     <g class="node hub">
       <rect x={hubX} y={mid - 42} width={hubW} height="84" rx="10" />
-      <text x={hubX + hubW / 2} y={mid - 10} class="strong">Omni Context</text>
+      <text x={hubX + hubW / 2} y={mid - 10} class="strong">Order handover</text>
       <text x={hubX + hubW / 2} y={mid + 10} class="strong">Service</text>
-      <text x={hubX + hubW / 2} y={mid + 29} class="small">session store · MongoDB</text>
+      <text x={hubX + hubW / 2} y={mid + 29} class="small">context captured once</text>
     </g>
 
     <g class="node modern">
       <rect x={outX} y={mid - 42} width={outW} height="84" rx="10" />
-      <text x={outX + outW / 2} y={mid - 10} class="strong">Omni order</text>
+      <text x={outX + outW / 2} y={mid - 10} class="strong">Digital order</text>
       <text x={outX + outW / 2} y={mid + 10} class="strong">journey</text>
       <text x={outX + outW / 2} y={mid + 29} class="small">far fewer clicks</text>
     </g>
@@ -84,12 +84,12 @@ const tOut = `M${tW / 2} ${tHubY + 76} L${tW / 2} ${tOutY}`;
     ))}
     <g class="node hub">
       <rect x={tW / 2 - 110} y={tHubY} width="220" height="76" rx="10" />
-      <text x={tW / 2} y={tHubY + 26} class="strong">Omni Context Service</text>
-      <text x={tW / 2} y={tHubY + 50} class="small">session store · MongoDB</text>
+      <text x={tW / 2} y={tHubY + 26} class="strong">Order handover service</text>
+      <text x={tW / 2} y={tHubY + 50} class="small">context captured once</text>
     </g>
     <g class="node modern">
       <rect x={tW / 2 - 110} y={tOutY} width="220" height="76" rx="10" />
-      <text x={tW / 2} y={tOutY + 26} class="strong">Omni order journey</text>
+      <text x={tW / 2} y={tOutY + 26} class="strong">Digital order journey</text>
       <text x={tW / 2} y={tOutY + 50} class="small">fewer screens, fewer clicks</text>
     </g>
     {tPaths.map((d, i) => (
@@ -105,7 +105,7 @@ const tOut = `M${tW / 2} ${tHubY + 76} L${tW / 2} ${tOutY}`;
   </svg>
   <figcaption>
     <span><b>1</b> The agent starts in the legacy tool they already use, which calls the create session API with the customer context.</span>
-    <span><b>2</b> Omni Context Service stores it as a session and sends the agent to the Omni portal with a session id.</span>
+    <span><b>2</b> The service keeps that context and sends the agent straight into the digital order journey.</span>
     <span><b>3</b> Every step of the order journey reads what it needs through the service, so nothing is typed twice.</span>
   </figcaption>
 </figure>

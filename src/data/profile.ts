@@ -4,7 +4,7 @@
 export const profile = {
   name: 'Souradip Ganguly',
   shortName: 'Souradip',
-  role: 'Lead Backend Engineer',
+  role: 'Lead Java Backend Engineer',
   company: 'Bounteous',
   location: 'Kolkata, India',
   email: 'souradip.g.21@gmail.com',
@@ -13,14 +13,14 @@ export const profile = {
   resume: '/souradip-ganguly-resume.pdf',
   pitch: 'I modernise legacy systems and put AI to work inside Java backends.',
   intro: [
-    'Six years of building Java and Spring Boot services on AWS for telecom, banking and insurance. Most of that time has gone into the unglamorous, high value work of taking old systems that make money and making them faster, simpler and easier to change.',
-    'Right now I lead backend work for one of the world’s largest telecom companies. I designed the service that moved their agent channels onto a modern digital order journey, and I’m building AI powered tooling for their sales teams.',
+    'Six years of building Java backend systems for telecom, banking and insurance that hold up under heavy traffic. Most of that time has gone into moving old platforms onto modern digital journeys and running large data migrations, work that has grown order volumes, cut manual effort and sped up delivery. I lead and mentor engineers and work closely with business stakeholders to ship on time.',
+    'Right now I lead backend work for British Telecom, where I launched the service that moved contact centre and store orders onto the new digital journey. I also use AI across design, delivery and the tools the business runs on, such as dashboards that show stakeholders where every order stands. On my own time I build distributed systems that stay correct under heavy concurrency: a payments ledger, a flash sale backend and a multi tenant AI gateway.',
   ],
   openTo: 'Open to senior and lead backend roles',
 };
 
 export const metrics = [
-  { value: 30, suffix: '%+', label: 'lift in order volume within three months of launching Omni Context Service' },
+  { value: 30, suffix: '%+', label: 'lift in order volume within three months of launch' },
   { value: 10, suffix: 'M+', label: 'API requests a month on services I designed' },
   { value: 6, suffix: 'M+', label: 'insurance policies moved off legacy systems' },
   { value: 40, suffix: '%', label: 'manual effort removed through automation' },
@@ -32,7 +32,6 @@ export const companies: Record<string, Company> = {
   bounteous: {
     name: 'Bounteous',
     linkedin: 'https://www.linkedin.com/company/bounteous/',
-    note: 'formerly Accolite Digital',
   },
   infosys: { name: 'Infosys', linkedin: 'https://www.linkedin.com/company/infosys/' },
   tcs: { name: 'Tata Consultancy Services', linkedin: 'https://www.linkedin.com/company/tata-consultancy-services/' },
@@ -55,16 +54,16 @@ export const experience: Role[] = [
     period: 'Jan 2024 to now',
     place: 'Remote',
     summary:
-      'Leading backend modernisation for one of the world’s largest telecom companies, where most orders still come in through agent and store channels rather than the website.',
+      'Leading backend modernisation for British Telecom, where most orders still come in through contact centre and store channels rather than the website.',
     points: [
-      'Designed and built Omni Context Service, a Spring Boot microservice that bridges legacy channels (a Salesforce agent desktop, ServiceNow, retail store systems) and the company’s modern Omni order journey. A legacy tool calls one create session API, the service keeps the customer context as a session in MongoDB, and the agent lands in the new journey, which reads that session at every step. Far fewer screens and clicks for agents, and order volume grew by more than 30% within three months.',
-      'Building AI proofs of concept on the order data with agentic LLM workflows, routing each task to a model sized for it: a management dashboard that tracks every order from start to completion with drill down to the pain points, and an agent view with personal progress, follow up reminders and a leaderboard that drives healthy competition.',
-      'Designed Spring Boot microservices that serve more than 10 million API requests a month.',
-      'Built and tuned REST and GraphQL APIs that made order processing 35% more efficient.',
-      'Moved the busiest flows to reactive programming, keeping the platform responsive through a 50% rise in traffic.',
-      'Automated workflows over more than a million records on AWS and MongoDB, cutting manual effort by 40%.',
+      'Launched a service that lets contact centre and store staff place orders on the new digital journey instead of old screens. Orders went up 30%+ in 3 months.',
+      'Built AI powered dashboards that show stakeholders where every order stands and give sales agents a leaderboard to compete on.',
+      'Microservices now handle 10M+ API calls a month. Reworked the order APIs (35% more efficient processing) and moved the busiest flows to Spring WebFlux ahead of a 50% jump in traffic.',
+      'Automated manual steps on 1M+ records, so business teams spend 40% less time on them.',
+      'Use AI across solution design, architecture reviews, coding and testing, making delivery about 20% faster.',
+      'Mentor 5 to 7 engineers. Also review code, run releases and handle production incidents.',
     ],
-    stack: ['Java 21', 'Spring Boot', 'MongoDB', 'AWS ECS', 'Amazon S3', 'REST', 'GraphQL', 'Spring WebFlux', 'Agentic LLM workflows', 'Salesforce', 'ServiceNow'],
+    stack: ['Java 21', 'Spring Boot', 'Microservices', 'MongoDB', 'AWS ECS', 'Amazon S3', 'REST', 'GraphQL', 'Spring WebFlux', 'Agentic AI'],
   },
   {
     company: companies.infosys,
@@ -73,8 +72,9 @@ export const experience: Role[] = [
     place: 'Kolkata',
     summary: 'Backend engineer on core banking products for a major private bank.',
     points: [
-      'Built an internal automation tool that took about 40% of the repetitive work off the development team.',
-      'Worked on architecture and feature optimisation that lifted end user satisfaction by 40%.',
+      'Worked on the Java and Spring Boot services behind core banking operations at one of India’s largest private banks.',
+      'Created an internal automation tool that took over 40% of the team’s repetitive work.',
+      'Improved high traffic banking features, lifting end user satisfaction by 40%.',
     ],
     stack: ['Java', 'Spring Boot', 'SQL'],
   },
@@ -85,9 +85,9 @@ export const experience: Role[] = [
     place: 'Kolkata',
     summary: 'TCS BaNCS Insurance, for life and pensions brands in the UK.',
     points: [
-      'Owned parts of the migration of legacy life, annuity and pension systems covering more than 6 million policies.',
-      'Cut development time by 20% and improved application performance by 30% through better planning and workflow changes.',
-      'Mentored and led a small group of junior developers through full delivery cycles.',
+      'Ran the migration of 6M+ UK life, annuity and pension policies from legacy systems to a modern insurance platform.',
+      'Improved the team’s planning and workflow, so features took 20% less time to build and the app ran 30% faster.',
+      'Led 3 to 4 junior developers through full release cycles, and every release shipped on time.',
     ],
     stack: ['Java', 'Spring', 'SQL', 'Maven'],
   },
@@ -97,13 +97,14 @@ export const experience: Role[] = [
 export const buildingWith = ['Java 25', 'Spring Boot 4', 'Spring AI 2.0', 'Model Context Protocol', 'Virtual threads', 'Apache Kafka', 'Kubernetes', 'OpenTelemetry'];
 
 export const skills = [
-  { group: 'Languages', items: ['Java (up to 25)', 'SQL', 'Python', 'Lua (Redis scripts)'] },
-  { group: 'Frameworks', items: ['Spring Boot', 'Spring WebFlux', 'Project Reactor', 'Spring Security', 'Hibernate / JPA', 'R2DBC'] },
-  { group: 'APIs and integration', items: ['REST', 'GraphQL', 'Server Sent Events', 'Apache Kafka', 'Salesforce', 'ServiceNow'] },
-  { group: 'Data', items: ['MongoDB', 'PostgreSQL', 'Redis', 'MySQL'] },
-  { group: 'Cloud and delivery', items: ['AWS (ECS, EC2, Lambda, S3, CloudWatch)', 'Docker', 'Maven', 'CI/CD'] },
-  { group: 'AI in the backend', items: ['Agentic LLM workflows', 'Model routing', 'Prompt design', 'Hugging Face', 'Apache Tika'] },
-  { group: 'Testing', items: ['JUnit', 'Mockito', 'Testcontainers', 'k6 load tests', 'TDD'] },
+  { group: 'Languages', items: ['Java (17, 21, 25)', 'SQL', 'Python'] },
+  { group: 'Backend', items: ['Spring Boot', 'Spring WebFlux', 'Spring Security', 'Spring Data JPA', 'Hibernate', 'REST APIs', 'GraphQL', 'gRPC'] },
+  { group: 'Architecture', items: ['Microservices', 'Distributed systems', 'System design', 'Event driven architecture', 'Scalability', 'High availability', 'Concurrency'] },
+  { group: 'Data and messaging', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Elasticsearch', 'Apache Kafka'] },
+  { group: 'Cloud and DevOps', items: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'CI/CD', 'GitHub Actions', 'Jenkins'] },
+  { group: 'Observability and testing', items: ['OpenTelemetry', 'Prometheus', 'Grafana', 'JUnit', 'Mockito', 'Testcontainers'] },
+  { group: 'AI engineering', items: ['Agentic AI', 'AI agents', 'LLM orchestration', 'Tool calling', 'RAG', 'Vector databases', 'MCP', 'Spring AI', 'Claude Code'] },
+  { group: 'Leadership', items: ['Mentoring', 'Code reviews', 'Stakeholder communication', 'Cross team collaboration', 'Agile and Scrum'] },
 ];
 
 export const helpWith = [
@@ -131,8 +132,8 @@ export const certifications = [
 ];
 
 export const awards = [
-  { name: 'Emerging Icon', from: 'Accolite Digital (now Bounteous)' },
-  { name: 'Extra Miler', from: 'Accolite Digital (now Bounteous)' },
+  { name: 'Emerging Icon', from: 'Bounteous' },
+  { name: 'Extra Miler', from: 'Bounteous' },
   { name: 'Star of the Month', from: 'Tata Consultancy Services' },
   { name: 'On the Spot', from: 'Tata Consultancy Services' },
   { name: 'Best Team', from: 'Tata Consultancy Services' },
@@ -146,15 +147,15 @@ export const recommendations: { quote: string; name: string; title: string; rela
       'He was deeply involved in managing deployments, maintaining code quality, and contributing to clean, maintainable, and scalable solutions. Whether it was troubleshooting complex production issues or proactively identifying areas for improvement in our Codebase and CI/CD pipeline, Souradip could be counted on to deliver.',
     name: 'Lakhvir Bansal',
     title: 'Associate Technical Director, Bounteous',
-    relation: 'managed me at Accolite',
+    relation: 'managed me at Bounteous',
     link: 'https://www.linkedin.com/in/lakhvir-bansal/',
   },
   {
     quote:
       'When it comes to coding, Souradip’s work is all about clean, efficient, and future-proof solutions. Whether solving tricky problems or rolling out best practices, he handles it all easily. Plus, he brings a compelling passion and a collaborative spirit that uplifts the entire team.',
     name: 'Sudha S Balaguru',
-    title: 'Engineering Manager',
-    relation: 'managed me directly',
+    title: 'Engineering Manager, British Telecom (BT), UK',
+    relation: 'managed me directly as my client manager',
     link: 'https://www.linkedin.com/in/sudha-s-balaguru-774344a2/',
   },
 ];

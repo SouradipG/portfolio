@@ -19,9 +19,9 @@ import { projects } from '../data/projects';
 
 const site = Astro.site!.toString().replace(/\/$/, '');
 const apiUrl = `${site}/api/v1/engineers/souradip`;
-const title = `${profile.name} | Lead Backend Engineer, Java, Spring Boot and AI`;
+const title = `${profile.name} | Lead Java Backend Engineer, Spring Boot, Microservices and AI`;
 const description =
-  'Souradip Ganguly is a lead backend engineer with six years of experience modernising legacy systems with Java, Spring Boot and AWS, and building AI features into backend services.';
+  'Souradip Ganguly is a lead Java backend engineer with six years in telecom, banking and insurance, building backend systems and microservices that hold up under heavy traffic, moving old platforms onto modern digital journeys and using AI across design and delivery.';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -48,7 +48,16 @@ const jsonLd = {
       'AWS',
       'MongoDB',
       'System design',
+      'Distributed systems',
+      'Event driven architecture',
+      'Apache Kafka',
+      'PostgreSQL',
+      'Redis',
+      'Concurrency',
       'LLM integration',
+      'Agentic AI',
+      'Generative AI',
+      'Spring AI',
     ],
   },
 };
@@ -139,15 +148,15 @@ const formAction = `https://formsubmit.co/ajax/${profile.email}`;
 
       <section id="impact" class="block">
         <h2 class="label">Featured work</h2>
-        <h3 class="title">Omni Context Service</h3>
+        <h3 class="title">Moving British Telecom's agent and store orders to the digital journey</h3>
         <p class="lead">
-          Most orders at the client come through agents and stores, not the website, and those channels ran on screens that were years behind the digital journey. Rather than rebuilding every legacy tool, I built one Spring Boot service that sits between them and the modern Omni portal, so any channel can hand an order over with a single API call.
+          Most orders at British Telecom come through contact centre agents and stores, not the website, and those channels ran on screens that were years behind the digital journey. Rather than rebuilding every legacy tool, I launched one service that sits between them and the new journey, so any channel can hand an order over in a single step.
         </p>
         <OmniFlow />
         <div class="impact-row">
           <p><b>30%+</b> more orders within three months</p>
-          <p><b>1 API call</b> for any legacy channel to hand over an order</p>
-          <p><b>1 session</b> shared by every step of the journey</p>
+          <p><b>1 step</b> for any legacy channel to hand over an order</p>
+          <p><b>0</b> details typed twice by agents</p>
         </div>
       </section>
 
