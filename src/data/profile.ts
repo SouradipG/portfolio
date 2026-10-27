@@ -4,7 +4,7 @@
 export const profile = {
   name: 'Souradip Ganguly',
   shortName: 'Souradip',
-  role: 'Lead Backend Engineer',
+  role: 'Lead Java Backend Engineer',
   company: 'Bounteous',
   location: 'Kolkata, India',
   email: 'souradip.g.21@gmail.com',
@@ -13,7 +13,7 @@ export const profile = {
   resume: '/souradip-ganguly-resume.pdf',
   pitch: 'I modernise legacy systems and put AI to work inside Java backends.',
   intro: [
-    'Six years of building scalable, high traffic backend systems for global enterprises in telecom, banking and insurance. Most of that time has gone into turning legacy platforms into digital journeys that grow revenue, and into leading and mentoring the engineers who build them.',
+    'Six years of building scalable, high traffic Java backend systems for global enterprises in telecom, banking and insurance. Most of that time has gone into turning legacy platforms into digital journeys that grow revenue, and into leading and mentoring the engineers who build them.',
     'Right now I lead backend work for British Telecom, where I launched the service that moved contact centre and store orders onto the new digital journey. I also use AI across design, delivery and the tools the business runs on, such as dashboards that show stakeholders where every order stands. On my own time I build distributed systems that stay correct under heavy concurrency: a payments ledger, a flash sale backend and a multi tenant AI gateway.',
   ],
   openTo: 'Open to senior and lead backend roles',
