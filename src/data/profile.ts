@@ -56,8 +56,8 @@ export const experience: Role[] = [
     summary:
       'Leading backend modernisation for British Telecom, where most orders still come in through contact centre and store channels rather than the website.',
     points: [
-      'Launched the service that moved contact centre and store orders from legacy screens onto the new digital journey, lifting order volume 30%+ within 3 months.',
-      'Applied AI to build analytics dashboards that show stakeholders where every order stands, and agent leaderboards that motivate sales teams through healthy competition.',
+      'Launched a service that lets contact centre and store staff place orders on the new digital journey instead of old screens. Orders went up 30%+ in 3 months.',
+      'Built AI powered dashboards that show stakeholders where every order stands and give sales agents a leaderboard to compete on.',
       'Microservices now handle 10M+ API calls a month. Reworked the order APIs (35% more efficient processing) and moved the busiest flows to Spring WebFlux ahead of a 50% jump in traffic.',
       'Automated manual steps on 1M+ records, so business teams spend 40% less time on them.',
       'Use AI across solution design, architecture reviews, coding and testing, making delivery about 20% faster.',
@@ -85,7 +85,7 @@ export const experience: Role[] = [
     place: 'Kolkata',
     summary: 'TCS BaNCS Insurance, for life and pensions brands in the UK.',
     points: [
-      'Ran the migration of 6M+ UK life, annuity and pension policies from legacy systems to TCS BaNCS.',
+      'Ran the migration of 6M+ UK life, annuity and pension policies from legacy systems to a modern insurance platform.',
       'Improved the team’s planning and workflow, so features took 20% less time to build and the app ran 30% faster.',
       'Led 3 to 4 junior developers through full release cycles, and every release shipped on time.',
     ],
