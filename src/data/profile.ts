@@ -11,10 +11,10 @@ export const profile = {
   github: 'https://github.com/SouradipG',
   linkedin: 'https://www.linkedin.com/in/souradip/',
   resume: '/souradip-ganguly-resume.pdf',
-  pitch: 'I modernise legacy systems and put AI to work inside Java backends.',
+  pitch: 'I build Java backends that don’t break in production, whether I start from a blank page or a legacy system.',
   intro: [
-    'Six years of building Java backend systems for telecom, banking and insurance that hold up under heavy traffic. Most of that time has gone into moving old platforms onto modern digital journeys and running large data migrations, work that has grown order volumes, cut manual effort and sped up delivery. I lead and mentor engineers and work closely with business stakeholders to ship on time.',
-    'Right now I lead backend work for British Telecom, where I launched the service that moved contact centre and store orders onto the new digital journey. I also use AI across design, delivery and the tools the business runs on, such as dashboards that show stakeholders where every order stands. On my own time I build distributed systems that stay correct under heavy concurrency: a payments ledger, a flash sale backend and a multi tenant AI gateway.',
+    'Six years of building Java backend systems for telecom, banking and insurance. I design and build services from scratch that stay correct under heavy traffic, concurrent requests and partial failures, and I take legacy platforms of any size and rebuild them as modern digital journeys. That work has grown order volumes, cut manual effort and sped up delivery. I lead and mentor engineers and work closely with business stakeholders to ship on time.',
+    'Right now I lead backend work for British Telecom, where I launched the service that moved contact centre and store orders onto the new digital journey, on microservices that handle more than 10 million API calls a month. I use AI where it genuinely makes the team faster, in design reviews, delivery and stakeholder dashboards, but the systems I build rest on solid engineering, not on AI. On my own time I build systems that stay correct under heavy concurrency: a payments ledger, a flash sale backend and a multi tenant AI gateway.',
   ],
   openTo: 'Open to senior and lead backend roles',
 };
@@ -109,13 +109,18 @@ export const skills = [
 
 export const helpWith = [
   {
-    title: 'Modernising legacy channels',
-    body: 'Old systems that still bring in the money, wrapped and bridged so the business can move to a modern stack without a risky big bang rewrite.',
+    title: 'Building backends from scratch',
+    body: 'New services designed for production from day one: clean APIs, safe concurrency, idempotency and caching, so they hold up when traffic spikes or a dependency fails.',
+    subject: 'New backend build',
+  },
+  {
+    title: 'Modernising legacy systems',
+    body: 'Any legacy system, moved onto a modern stack step by step, so the business keeps running and earning without a risky big bang rewrite.',
     subject: 'Legacy modernisation',
   },
   {
-    title: 'AI inside Java backends',
-    body: 'LLM features that sit next to deterministic code, with fallbacks, guardrails and numbers you can trust.',
+    title: 'AI where it earns its place',
+    body: 'LLM features beside deterministic code, with fallbacks, guardrails and numbers you can trust, used where they make people faster and left out where they don’t.',
     subject: 'AI in the backend',
   },
   {

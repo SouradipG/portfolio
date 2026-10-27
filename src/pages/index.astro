@@ -21,7 +21,7 @@ const site = Astro.site!.toString().replace(/\/$/, '');
 const apiUrl = `${site}/api/v1/engineers/souradip`;
 const title = `${profile.name} | Lead Java Backend Engineer, Spring Boot, Microservices and AI`;
 const description =
-  'Souradip Ganguly is a lead Java backend engineer with six years in telecom, banking and insurance, building backend systems and microservices that hold up under heavy traffic, moving old platforms onto modern digital journeys and using AI across design and delivery.';
+  'Souradip Ganguly is a lead Java backend engineer with six years in telecom, banking and insurance. He builds backend systems and microservices from scratch that hold up under heavy traffic and concurrency, modernises legacy platforms into digital journeys and uses AI where it helps.';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -899,7 +899,7 @@ const formAction = `https://formsubmit.co/ajax/${profile.email}`;
 
   .help {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.9rem;
     margin-top: 1.5rem;
   }
