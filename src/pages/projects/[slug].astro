@@ -20,7 +20,9 @@ const jsonLd = {
   description: project.tagline,
   codeRepository: project.repo,
   programmingLanguage: 'Java',
-  author: { '@type': 'Person', name: profile.name, url: site },
+  author: { '@type': 'Person', '@id': `${site}/#person`, name: profile.name, url: site },
+  url: `${site}/projects/${project.slug}`,
+  keywords: project.stack.join(', '),
 };
 ---
 
