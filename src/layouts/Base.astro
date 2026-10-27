@@ -13,7 +13,7 @@ interface Props {
   header?: boolean;
 }
 
-const { title, description, image = '/og.png', type = 'website', jsonLd, header = true } = Astro.props;
+const { title, description, image = '/og.png?v=2', type = 'website', jsonLd, header = true } = Astro.props;
 const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site);
 const ogImage = new URL(image, Astro.site);
 ---
