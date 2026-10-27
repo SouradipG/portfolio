@@ -19,47 +19,61 @@ import { projects } from '../data/projects';
 
 const site = Astro.site!.toString().replace(/\/$/, '');
 const apiUrl = `${site}/api/v1/engineers/souradip`;
-const title = `${profile.name} | Lead Java Backend Engineer, Spring Boot, Microservices and AI`;
+const title = `${profile.name} | Lead Java Backend Engineer in India`;
 const description =
-  'Souradip Ganguly is a lead Java backend engineer who designs and builds backend systems for telecom, banking and insurance. He leads backend work on British Telecom’s digital ordering platform, on services that handle more than 10 million API calls a month.';
+  'Souradip Ganguly is a lead Java backend engineer in Kolkata, India with 6+ years building Spring Boot microservices and distributed systems for telecom, banking and insurance. He leads backend work on British Telecom’s digital ordering platform, on services that handle more than 10 million API calls a month.';
 
+const personId = `${site}/#person`;
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'ProfilePage',
-  mainEntity: {
-    '@type': 'Person',
-    name: profile.name,
-    url: site,
-    image: `${site}/souradip.jpg`,
-    jobTitle: profile.role,
-    worksFor: { '@type': 'Organization', name: companies.bounteous.name, sameAs: companies.bounteous.linkedin },
-    address: { '@type': 'PostalAddress', addressLocality: 'Kolkata', addressCountry: 'IN' },
-    alumniOf: { '@type': 'CollegeOrUniversity', name: 'Narula Institute of Technology' },
-    email: `mailto:${profile.email}`,
-    sameAs: [profile.github, profile.linkedin],
-    knowsAbout: [
-      'Backend development',
-      'Legacy modernisation',
-      'Java',
-      'Spring Boot',
-      'Microservices',
-      'Reactive programming',
-      'GraphQL',
-      'AWS',
-      'MongoDB',
-      'System design',
-      'Distributed systems',
-      'Event driven architecture',
-      'Apache Kafka',
-      'PostgreSQL',
-      'Redis',
-      'Concurrency',
-      'LLM integration',
-      'Agentic AI',
-      'Generative AI',
-      'Spring AI',
-    ],
-  },
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${site}/#website`,
+      url: site,
+      name: profile.name,
+      description,
+      inLanguage: 'en',
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': `${site}/#profile`,
+      url: site,
+      name: title,
+      isPartOf: { '@id': `${site}/#website` },
+      about: { '@id': personId },
+      mainEntity: { '@id': personId },
+      dateModified: new Date().toISOString().slice(0, 10),
+    },
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: profile.name,
+      givenName: 'Souradip',
+      familyName: 'Ganguly',
+      url: site,
+      image: `${site}/souradip.jpg`,
+      description,
+      jobTitle: profile.role,
+      worksFor: { '@type': 'Organization', name: companies.bounteous.name, sameAs: companies.bounteous.linkedin },
+      address: { '@type': 'PostalAddress', addressLocality: 'Kolkata', addressRegion: 'West Bengal', addressCountry: 'IN' },
+      alumniOf: { '@type': 'CollegeOrUniversity', name: 'Narula Institute of Technology' },
+      email: `mailto:${profile.email}`,
+      sameAs: [profile.linkedin, profile.github],
+      hasOccupation: {
+        '@type': 'Occupation',
+        name: 'Lead Backend Engineer',
+        occupationLocation: { '@type': 'Country', name: 'India' },
+        skills: skills.flatMap((g) => g.items).join(', '),
+        experienceRequirements: '6+ years',
+      },
+      knowsAbout: [...new Set(['Backend engineering', 'Legacy modernisation', ...skills.filter((g) => g.group !== 'Leadership').flatMap((g) => g.items)])],
+      hasCredential: certifications.map((c) => ({ '@type': 'EducationalOccupationalCredential', name: c })),
+      award: awards.map((a) => `${a.name}, ${a.from}`),
+      subjectOf: projects.map((p) => ({ '@type': 'SoftwareSourceCode', name: p.name, url: `${site}/projects/${p.slug}`, codeRepository: p.repo })),
+    },
+  ],
 };
 
 const nav = [
