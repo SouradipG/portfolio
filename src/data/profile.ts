@@ -11,10 +11,11 @@ export const profile = {
   github: 'https://github.com/SouradipG',
   linkedin: 'https://www.linkedin.com/in/souradip/',
   resume: '/souradip-ganguly-resume.pdf',
-  pitch: 'I build Java backends that don’t break in production, whether I start from a blank page or a legacy system.',
+  pitch: 'I design and build Java backends that carry real traffic and real money, and I keep them running in production.',
   intro: [
-    'Six years of building Java backend systems for telecom, banking and insurance. I design and build services from scratch that stay correct under heavy traffic, concurrent requests and partial failures, and I take legacy platforms of any size and rebuild them as modern digital journeys. That work has grown order volumes, cut manual effort and sped up delivery. I lead and mentor engineers and work closely with business stakeholders to ship on time.',
-    'Right now I lead backend work for British Telecom, where I launched the service that moved contact centre and store orders onto the new digital journey, on microservices that handle more than 10 million API calls a month. I use AI where it genuinely makes the team faster, in design reviews, delivery and stakeholder dashboards, but the systems I build rest on solid engineering, not on AI. On my own time I build systems that stay correct under heavy concurrency: a payments ledger, a flash sale backend and a multi tenant AI gateway.',
+    'I’m a lead backend engineer at Bounteous, where I lead backend work on British Telecom’s digital ordering platform. The services my team runs handle more than 10 million API calls a month, and the order handover service I launched lifted order volume by 30% in its first three months.',
+    'Over six years in telecom, banking and insurance I’ve built new services from a blank page, rebuilt legacy systems that were still carrying the business, and moved more than 6 million insurance policies onto a modern platform. I care most about the parts that decide whether a system survives production: concurrency that stays correct under load, retries that never charge anyone twice, and failures that slow things down instead of taking them down.',
+    'I lead and mentor a team of five to seven engineers, and I use AI where it makes us faster without letting it make the decisions. Outside work I build the hard parts myself: a payments ledger, a flash sale backend and a multi tenant AI gateway, each tested against the failures that usually break systems like them.',
   ],
   openTo: 'Open to senior and lead backend roles',
 };
