@@ -44,7 +44,7 @@ const jsonLd = {
       isPartOf: { '@id': `${site}/#website` },
       about: { '@id': personId },
       mainEntity: { '@id': personId },
-      dateModified: new Date().toISOString().slice(0, 10),
+      dateModified: new Date().toISOString().replace(/\.\d{3}Z$/, 'Z'),
     },
     {
       '@type': 'Person',
