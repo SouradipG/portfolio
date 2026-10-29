@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  /* LinkedIn banner, 1584 x 396. The profile photo covers the bottom left, so the text sits right of x = 520. */
+  * { box-sizing: border-box; }
+  body { margin: 0; width: 1584px; height: 396px; overflow: hidden; background: #f7f6f2; font-family: 'IBM Plex Sans', sans-serif; color: #16181d; position: relative; }
+  .grid { position: absolute; inset: 0; background-image: radial-gradient(#d9d6cb 1.2px, transparent 1.2px); background-size: 24px 24px;
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.55) 30%, transparent 46%); }
+  .rule { position: absolute; left: 520px; top: 56px; bottom: 56px; width: 2px; background: #0b6e4f; }
+  .content { position: absolute; left: 560px; right: 72px; top: 52px; bottom: 50px; display: flex; flex-direction: column; justify-content: space-between; }
+  .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 19px; letter-spacing: .1em; text-transform: uppercase; color: #0b6e4f; font-weight: 500; }
+  h1 { font-size: 50px; line-height: 1.12; font-weight: 600; letter-spacing: -0.015em; margin: 14px 0 0; max-width: 900px; }
+  .stats { display: flex; gap: 44px; font-family: 'IBM Plex Mono', monospace; font-size: 19px; color: #5c6270; }
+  .stats b { color: #16181d; font-weight: 500; }
+  .foot { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #e2e0d8; padding-top: 18px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 19px; color: #5c6270; }
+  .foot b { color: #0b6e4f; font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="rule"></div>
+  <div class="content">
+    <div>
+      <div class="eyebrow">Souradip Ganguly · Lead Java Backend Engineer</div>
+      <h1>I build Java backends that carry real traffic and real money.</h1>
+    </div>
+    <div class="stats">
+      <span><b>10M+</b> API calls a month</span>
+      <span><b>6M+</b> policies migrated</span>
+      <span><b>6+</b> years in production</span>
+    </div>
+    <div class="foot"><span>Java · Spring Boot · Kafka · AWS · AI Agents</span><b>portfolio-souradip.vercel.app</b></div>
+  </div>
+</body>
+</html>
