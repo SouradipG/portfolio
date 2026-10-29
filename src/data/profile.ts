@@ -71,9 +71,9 @@ export const experience: Role[] = [
     title: 'Associate Consultant',
     period: 'May 2023 to Jan 2024',
     place: 'Kolkata',
-    summary: 'Backend engineer on core banking products for a major private bank.',
+    summary: 'Backend engineer on core banking products for a leading global bank.',
     points: [
-      'Worked on the Java and Spring Boot services behind core banking operations at one of India’s largest private banks.',
+      'Worked on the Java and Spring Boot services behind core banking operations for a leading global bank.',
       'Created an internal automation tool that took over 40% of the team’s repetitive work.',
       'Improved high traffic banking features, lifting end user satisfaction by 40%.',
     ],
@@ -84,7 +84,7 @@ export const experience: Role[] = [
     title: 'Systems Engineer',
     period: 'Aug 2020 to May 2023',
     place: 'Kolkata',
-    summary: 'TCS BaNCS Insurance, for life and pensions brands in the UK.',
+    summary: 'TCS BaNCS Insurance, for a leading UK insurer.',
     points: [
       'Ran the migration of 6M+ UK life, annuity and pension policies from legacy systems to a modern insurance platform.',
       'Improved the team’s planning and workflow, so features took 20% less time to build and the app ran 30% faster.',
